@@ -69,7 +69,8 @@ def papi_demo(api):
 	#print user.profile.introduction
 def fetch_image(api,ranking,per_page):
 	import shutil
-	path = prepath+'images'
+	#path = prepath+'images'
+	path = prepath
 	#print type(id_list)
 	#print ">>> origin url: %s" % node.image_urls['large']
 	#illust = id_list[0]
@@ -100,36 +101,32 @@ def fetch_image(api,ranking,per_page):
 			break
 	#print ">>> origin url: %s" % illust.image_urls['large']
 
-prepath = 'H_'
+
 def main():
 	api = PixivAPI()
 
 	### change _USERNAME,_PASSWORD first!
 	api.login(_USERNAME, _PASSWORD)
 	###
-	
-	for x in range(1,12):
+	year = '2015'
+	mode = 'daily_r18'
+	global prepath
+	prepath = '2015_daily_r18'
+	import os
+	if not os.path.exists(prepath):
+		os.makedirs(prepath)
+	print ('FOLDER PATH : %s' % prepath)
+	print ('FOLDER PATH : %s' % prepath,file=r_f)
+	for month in range(1,12):
 		####
-		year = '2013'
-		mode = 'weekly_r18'
+
 		#mode = 'weekly'
-		per_page = 30
-		date = '%s-%02d-01' % (year,x)
-		id_list = []
-		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
-		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-10' % (year,x)
-		id_list = []
-		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
-		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-20' % (year,x)
-		id_list = []
-		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
-		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-28' % (year,x)
-		id_list = []
-		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
-		fetch_image(api,id_list,per_page)
+		per_page = 5
+		for day in range(1,31):
+			date = '%s-%02d-%02d' % (year,month,day)
+			id_list = []
+			id_list = migrate_sapi_to_papi(api,mode,per_page,date)
+			fetch_image(api,id_list,per_page)
 
 if __name__ == '__main__':
 	main()

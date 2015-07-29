@@ -114,19 +114,19 @@ def main():
 		mode = 'weekly_r18'
 		#mode = 'weekly'
 		per_page = 30
-		date = '%s-%02d-01' % (year,x)
+		date = '%s-0%d-01' % (year,x)
 		id_list = []
 		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
 		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-10' % (year,x)
+		date = '%s-0%d-10' % (year,x)
 		id_list = []
 		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
 		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-20' % (year,x)
+		date = '%s-0%d-20' % (year,x)
 		id_list = []
 		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
 		fetch_image(api,id_list,per_page)
-		date = '%s-%02d-28' % (year,x)
+		date = '%s-0%d-28' % (year,x)
 		id_list = []
 		id_list = migrate_sapi_to_papi(api,mode,per_page,date)
 		fetch_image(api,id_list,per_page)
